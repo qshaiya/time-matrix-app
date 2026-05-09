@@ -1,0 +1,187 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--color);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 480px;
+  box-shadow: var(--shadow), 0 0 60px rgba(0,0,0,0.5);
+  animation: slideUp 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-tag {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.modal-close {
+  font-size: 22px;
+  color: var(--text-muted);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: all 0.15s;
+}
+
+.modal-close:hover { background: var(--surface2); color: var(--text); }
+
+.modal-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.field label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.field input, .field textarea {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 14px;
+  padding: 10px 12px;
+  transition: border-color 0.15s;
+  outline: none;
+  resize: none;
+}
+
+.field input:focus, .field textarea:focus {
+  border-color: var(--color);
+}
+
+.field input::placeholder, .field textarea::placeholder {
+  color: var(--text-muted);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.5);
+  cursor: pointer;
+}
+
+.field-row {
+  display: flex;
+  gap: 12px;
+}
+
+.priority-group {
+  display: flex;
+  gap: 6px;
+}
+
+.priority-btn {
+  flex: 1;
+  padding: 8px 6px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1.5px solid var(--border);
+  background: var(--surface2);
+  color: var(--text-muted);
+  transition: all 0.15s;
+}
+
+.priority-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+.priority-btn.active.priority-high { background: rgba(255,77,109,0.15); border-color: var(--q1); color: var(--q1); }
+.priority-btn.active.priority-medium { background: rgba(251,146,60,0.15); border-color: var(--q3); color: var(--q3); }
+.priority-btn.active.priority-low { background: rgba(167,139,250,0.15); border-color: var(--q4); color: var(--q4); }
+
+.modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-top: 1px solid var(--border);
+  gap: 12px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.btn-cancel, .btn-save, .btn-delete {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: var(--radius-sm);
+  transition: all 0.15s;
+}
+
+.btn-cancel {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+
+.btn-cancel:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+.btn-save {
+  background: var(--color);
+  color: #000;
+  font-weight: 600;
+}
+
+.btn-save:hover { filter: brightness(1.1); }
+.btn-save:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-delete {
+  color: var(--q1);
+  background: rgba(255,77,109,0.1);
+  border: 1px solid rgba(255,77,109,0.2);
+}
+
+.btn-delete:hover { background: rgba(255,77,109,0.2); }

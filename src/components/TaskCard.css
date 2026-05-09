@@ -1,0 +1,133 @@
+.task-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--color);
+  border-radius: var(--radius-sm);
+  padding: 10px 10px 10px 12px;
+  cursor: grab;
+  transition: all 0.15s;
+  animation: slideIn 0.2s ease;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.task-card:hover {
+  border-color: var(--color);
+  border-left-color: var(--color);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+.task-card:active { cursor: grabbing; }
+
+.task-card.completed {
+  opacity: 0.45;
+}
+
+.task-card.completed .task-title {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.task-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.task-check {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 1.5px solid var(--color);
+  flex-shrink: 0;
+  margin-top: 1px;
+  font-size: 11px;
+  color: var(--color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  transition: all 0.15s;
+}
+
+.task-card.completed .task-check {
+  background: var(--color);
+  color: #000;
+}
+
+.task-check:hover {
+  background: var(--color);
+  color: #000;
+}
+
+.task-body {
+  flex: 1;
+  min-width: 0;
+  cursor: pointer;
+}
+
+.task-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.task-note {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 3px;
+  line-height: 1.4;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.task-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+.task-due {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.task-priority {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.03em;
+}
+
+.priority-high { background: rgba(255,77,109,0.15); color: var(--q1); }
+.priority-medium { background: rgba(251,146,60,0.15); color: var(--q3); }
+.priority-low { background: rgba(167,139,250,0.15); color: var(--q4); }
+
+.task-delete {
+  font-size: 18px;
+  color: var(--text-muted);
+  line-height: 1;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: all 0.15s;
+}
+
+.task-card:hover .task-delete { opacity: 1; }
+.task-delete:hover { background: rgba(255,77,109,0.2); color: var(--q1); }

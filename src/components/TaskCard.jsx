@@ -1,42 +1,45 @@
+import { useState } from "react";
 import "./TaskCard.css";
 
 const PRIORITY_LABELS = { high: "High", medium: "Medium", low: "Low" };
+const QUADRANT_ICONS = { q1: "⚡", q2: "🎯", q3: "📤", q4: "🗑️" };
 
-export default function TaskCard({ task, color, onEdit, onDelete, onToggle, onDragStart, onDragEnd }) {
+export default function TaskCard({ task, color, onEdit, onDelete, onToggle, onDragStart, onDragEnd, onMove, quadrants }) {
+  const [showMove, setShowMove] = useState(false);
+  const isMobile = () => window.matchMedia("(max-width: 768px)").matches;
+
   return (
-    <div
-      className={`task-card ${task.completed ? "completed" : ""}`}
+    <div className={`task-card ${task.completed ? "completed" : ""}`}
       style={{ "--color": color }}
-      draggable
-      onDragStart={onDragStart}
-      onDragEnd={onDragEnd}
-    >
+      draggable={!isMobile()} onDragStart={onDragStart} onDragEnd={onDragEnd}>
       <div className="task-main">
-        <button
-          className="task-check"
-          onClick={onToggle}
-          aria-label={task.completed ? "Mark incomplete" : "Mark complete"}
-        >
+        <button className="task-check" onClick={onToggle}>
           {task.completed ? "✓" : ""}
         </button>
         <div className="task-body" onClick={onEdit}>
           <div className="task-title">{task.title}</div>
           {task.note && <div className="task-note">{task.note}</div>}
           <div className="task-meta">
-            {task.dueDate && (
-              <span className="task-due">
-                📅 {new Date(task.dueDate + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric" })}
-              </span>
-            )}
-            {task.priority && (
-              <span className={`task-priority priority-${task.priority}`}>
-                {PRIORITY_LABELS[task.priority]}
-              </span>
-            )}
+            {task.dueDate && <span className="task-due">📅 {new Date(task.dueDate + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric" })}</span>}
+            {task.priority && <span className={`task-priority priority-${task.priority}`}>{PRIORITY_LABELS[task.priority]}</span>}
           </div>
         </div>
-        <button className="task-delete" onClick={onDelete} aria-label="Delete task">×</button>
+        <div className="task-actions">
+          {onMove && <button className="task-move-btn" onClick={(e) => { e.stopPropagation(); setShowMove(!showMove); }}>⇄</button>}
+          <button className="task-delete" onClick={onDelete}>×</button>
+        </div>
       </div>
+      {showMove && quadrants && (
+        <div className="task-move-menu">
+          {quadrants.filter(q => q.id !== task.quadrantId).map(q => (
+            <button key={q.id} className="task-move-option"
+              style={{ "--q-color": `var(${q.colorVar})` }}
+              onClick={(e) => { e.stopPropagation(); onMove(task.id, q.id); setShowMove(false); }}>
+              {QUADRANT_ICONS[q.id]} {q.label}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

@@ -131,3 +131,11 @@
 
 .task-card:hover .task-delete { opacity: 1; }
 .task-delete:hover { background: rgba(255,77,109,0.2); color: var(--q1); }
+.task-actions { display:flex; align-items:center; gap:2px; flex-shrink:0; }
+.task-move-btn { font-size:14px; color:var(--text-muted); width:22px; height:22px; display:flex; align-items:center; justify-content:center; border-radius:4px; opacity:0; transition:all 0.15s; }
+.task-card:hover .task-move-btn { opacity:1; }
+@media (max-width: 768px) { .task-move-btn { opacity:1 !important; } }
+.task-move-btn:hover { background:var(--surface2); color:var(--text); }
+.task-move-menu { display:flex; gap:6px; padding:8px 0 4px; flex-wrap:wrap; border-top:1px solid var(--border); margin-top:6px; }
+.task-move-option { display:flex; align-items:center; gap:4px; font-size:11px; font-weight:600; color:var(--q-color); padding:4px 8px; border-radius:6px; background:rgba(255,255,255,0.05); border:1px solid var(--q-color); opacity:0.8; }
+.task-move-option:hover { opacity:1; background:rgba(255,255,255,0.1); }

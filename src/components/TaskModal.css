@@ -185,3 +185,53 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .btn-delete:hover { background: rgba(255,77,109,0.2); }
+
+.alarm-btn {
+  width: 100%;
+  padding: 10px 16px;
+  background: rgba(251,146,60,0.1);
+  border: 1px solid rgba(251,146,60,0.3);
+  border-radius: var(--radius-sm);
+  color: var(--q3);
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.15s;
+  text-align: center;
+}
+
+.alarm-btn:hover {
+  background: rgba(251,146,60,0.2);
+  border-color: var(--q3);
+}
+
+.alarm-steps {
+  background: rgba(251,146,60,0.08);
+  border: 1px solid rgba(251,146,60,0.2);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-top: 4px;
+}
+
+.alarm-steps-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--q3);
+  margin-bottom: 10px;
+}
+
+.alarm-steps ol {
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.alarm-steps li {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.alarm-steps strong {
+  color: var(--text);
+}

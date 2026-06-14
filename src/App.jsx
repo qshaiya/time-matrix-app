@@ -112,7 +112,7 @@ export default function App() {
       <Header stats={stats} onClearCompleted={clearCompleted} view={view} onViewChange={setView} user={session.user} onSignOut={handleSignOut} lang={lang} onLangChange={changeLang} tr={tr} />
       <main className="main">
         {view === "matrix" ? (
-          <Matrix quadrants={QUADRANTS} tasks={tasks} onAdd={openAdd} onEdit={openEdit} onDelete={deleteTask} onToggle={toggleComplete} onMove={moveTask} tr={tr} />
+          <Matrix quadrants={QUADRANTS} tasks={tasks} onAdd={openAdd} onEdit={openEdit} onDelete={deleteTask} onToggle={toggleComplete} onMove={moveTask} onGoToList={() => setView("list")} tr={tr} />
         ) : (
           <TaskListPanel tasks={tasks} quadrants={QUADRANTS} onEdit={openEdit} onDelete={deleteTask} onToggle={toggleComplete} onClearCompleted={clearCompleted} onMove={moveTask} tr={tr} />
         )}

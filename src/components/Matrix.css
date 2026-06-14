@@ -53,3 +53,22 @@
   transform-origin: center;
   white-space: nowrap;
 }
+
+.overdue-banner {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: rgba(255,77,109,0.1);
+  border: 1px solid rgba(255,77,109,0.3);
+  color: var(--q1);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 12px;
+  transition: all 0.15s;
+}
+
+.overdue-banner:hover {
+  background: rgba(255,77,109,0.18);
+}

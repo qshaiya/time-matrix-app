@@ -1,11 +1,7 @@
 import TaskCard from "./TaskCard";
 import "./TaskListPanel.css";
+import { isOverdue } from "../utils";
 
-function isOverdue(task) {
-  if (task.completed || !task.dueDate) return false;
-  const today = new Date().toISOString().split('T')[0];
-  return task.dueDate < today;
-}
 
 export default function TaskListPanel({ tasks, quadrants, onEdit, onDelete, onToggle, onClearCompleted, onMove, tr }) {
   const completed = tasks.filter((t) => t.completed);

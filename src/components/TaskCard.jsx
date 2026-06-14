@@ -1,14 +1,10 @@
 import { useState } from "react";
 import "./TaskCard.css";
+import { isOverdue } from "../utils";
 
 const PRIORITY_LABELS = { high: "High", medium: "Medium", low: "Low" };
 const QUADRANT_ICONS = { q1: "⚡", q2: "🎯", q3: "📤", q4: "🗑️" };
 
-function isOverdue(task) {
-  if (task.completed || !task.dueDate) return false;
-  const today = new Date().toISOString().split('T')[0];
-  return task.dueDate < today;
-}
 
 export default function TaskCard({ task, color, onEdit, onDelete, onToggle, onDragStart, onDragEnd, onMove, quadrants, tr }) {
   const [showMove, setShowMove] = useState(false);

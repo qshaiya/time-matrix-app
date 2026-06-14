@@ -114,7 +114,7 @@ export default function App() {
         {view === "matrix" ? (
           <Matrix quadrants={QUADRANTS} tasks={tasks} onAdd={openAdd} onEdit={openEdit} onDelete={deleteTask} onToggle={toggleComplete} onMove={moveTask} tr={tr} />
         ) : (
-          <TaskListPanel tasks={tasks} quadrants={QUADRANTS} onEdit={openEdit} onDelete={deleteTask} onToggle={toggleComplete} onClearCompleted={clearCompleted} tr={tr} />
+          <TaskListPanel tasks={tasks} quadrants={QUADRANTS} onEdit={openEdit} onDelete={deleteTask} onToggle={toggleComplete} onClearCompleted={clearCompleted} onMove={moveTask} tr={tr} />
         )}
       </main>
       {modal.open && (

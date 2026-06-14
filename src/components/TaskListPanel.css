@@ -109,3 +109,8 @@
   flex-direction: column;
   gap: 6px;
 }
+
+.overdue-label {
+  color: var(--q1);
+  border-bottom-color: var(--q1-border) !important;
+}

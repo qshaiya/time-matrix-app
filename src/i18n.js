@@ -9,6 +9,14 @@ export const LANGUAGES = [
 export const T = {
   en: {
     appSub: 'Eisenhower Time Management',
+    overdue: 'Overdue', overdueSection: 'Overdue',
+    overdueShort: 'Overdue',
+    overdueLong: 'Overdue',
+    overdueWarn: '⚠️',
+    overdueLabel: 'Overdue',
+    overdueGroup: 'Overdue Tasks',
+    overdueDate: 'Overdue',
+    overdueText: 'Overdue',
     tasksCompleted: (c, t) => `${c}/${t} tasks completed`,
     clearCompleted: 'Clear completed',
     signOut: 'Sign out',
@@ -49,6 +57,7 @@ export const T = {
   },
   ja: {
     appSub: 'アイゼンハワー時間管理',
+    overdue: '期限切れ', overdueSection: '期限切れ',
     tasksCompleted: (c, t) => `${c}/${t} タスク完了`,
     clearCompleted: '完了済みを削除', signOut: 'サインアウト',
     matrix: 'マトリクス', list: 'リスト',
@@ -80,6 +89,7 @@ export const T = {
   },
   de: {
     appSub: 'Eisenhower-Zeitmanagement',
+    overdue: 'Überfällig', overdueSection: 'Überfällig',
     tasksCompleted: (c, t) => `${c}/${t} Aufgaben erledigt`,
     clearCompleted: 'Erledigte löschen', signOut: 'Abmelden',
     matrix: 'Matrix', list: 'Liste',
@@ -111,6 +121,7 @@ export const T = {
   },
   fr: {
     appSub: 'Gestion du temps Eisenhower',
+    overdue: 'En retard', overdueSection: 'En retard',
     tasksCompleted: (c, t) => `${c}/${t} tâches terminées`,
     clearCompleted: 'Supprimer terminées', signOut: 'Se déconnecter',
     matrix: 'Matrice', list: 'Liste',
@@ -142,6 +153,7 @@ export const T = {
   },
   es: {
     appSub: 'Gestión del tiempo Eisenhower',
+    overdue: 'Vencida', overdueSection: 'Vencida',
     tasksCompleted: (c, t) => `${c}/${t} tareas completadas`,
     clearCompleted: 'Limpiar completadas', signOut: 'Cerrar sesión',
     matrix: 'Matriz', list: 'Lista',

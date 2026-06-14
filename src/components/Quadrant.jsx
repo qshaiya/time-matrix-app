@@ -26,7 +26,7 @@ export default function Quadrant({ quadrant, quadrants, tasks, onAdd, onEdit, on
             onEdit={() => onEdit(task)} onDelete={() => onDelete(task.id)}
             onToggle={() => onToggle(task.id)}
             onDragStart={() => onDragStart(task)} onDragEnd={onDragEnd}
-            onMove={onMove} quadrants={quadrants} />
+            onMove={onMove} quadrants={quadrants} tr={tr} />
         ))}
       </div>
       <button className="q-add" onClick={onAdd}><span>+</span> {tr('addTask')}</button>

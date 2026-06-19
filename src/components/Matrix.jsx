@@ -21,6 +21,7 @@ export default function Matrix({ quadrants, tasks, onAdd, onEdit, onDelete, onTo
   };
 
   const overdueCount = tasks.filter(isOverdue).length;
+  // 只显示未完成且未逾期的任务
   const visibleTasks = tasks.filter(t => !t.completed && !isOverdue(t));
 
   return (

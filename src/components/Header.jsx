@@ -2,7 +2,7 @@ import { useState } from "react";
 import { LANGUAGES } from "../i18n";
 import "./Header.css";
 
-export default function Header({ stats, onClearCompleted, view, onViewChange, user, onSignOut, lang, onLangChange, tr }) {
+export default function Header({ stats, view, onViewChange, user, onSignOut, lang, onLangChange, tr }) {
   const pct = stats.total ? Math.round((stats.completed / stats.total) * 100) : 0;
   const [showLang, setShowLang] = useState(false);
   const currentLang = LANGUAGES.find(l => l.code === lang);
@@ -39,7 +39,6 @@ export default function Header({ stats, onClearCompleted, view, onViewChange, us
           <button className={`view-btn ${view === "matrix" ? "active" : ""}`} onClick={() => onViewChange("matrix")}>⊞ {tr('matrix')}</button>
           <button className={`view-btn ${view === "list" ? "active" : ""}`} onClick={() => onViewChange("list")}>☰ {tr('list')}</button>
         </div>
-        
         {user && (
           <div className="user-info">
             <span className="user-email">{user.email}</span>

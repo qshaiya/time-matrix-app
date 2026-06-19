@@ -1,25 +1,55 @@
 import { useState } from "react";
 import "./TaskCard.css";
-import { isOverdue } from "../utils";
 
 const PRIORITY_LABELS = { high: "High", medium: "Medium", low: "Low" };
 const QUADRANT_ICONS = { q1: "⚡", q2: "🎯", q3: "📤", q4: "🗑️" };
 
+function isOverdue(task) {
+  if (task.completed || !task.dueDate) return false;
+  const today = new Date().toISOString().split('T')[0];
+  return task.dueDate < today;
+}
 
 export default function TaskCard({ task, color, onEdit, onDelete, onToggle, onDragStart, onDragEnd, onMove, quadrants, tr }) {
   const [showMove, setShowMove] = useState(false);
   const isMobile = () => window.matchMedia("(max-width: 768px)").matches;
   const overdue = isOverdue(task);
 
+  const handleToggle = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    onToggle();
+  };
+
+  const handleEdit = (e) => {
+    e.stopPropagation();
+    onEdit();
+  };
+
+  const handleDelete = (e) => {
+    e.stopPropagation();
+    onDelete();
+  };
+
   return (
-    <div className={`task-card ${task.completed ? "completed" : ""} ${overdue ? "overdue" : ""}`}
+    <div
+      className={`task-card ${task.completed ? "completed" : ""} ${overdue ? "overdue" : ""}`}
       style={{ "--color": color }}
-      draggable={!isMobile()} onDragStart={onDragStart} onDragEnd={onDragEnd}>
+      draggable={!isMobile()}
+      onDragStart={onDragStart}
+      onDragEnd={onDragEnd}
+    >
       <div className="task-main">
-        <button className="task-check" onClick={onToggle}>
+        <button
+          className="task-check"
+          onClick={handleToggle}
+          onTouchEnd={handleToggle}
+          aria-label={task.completed ? "Mark incomplete" : "Mark complete"}
+        >
           {task.completed ? "✓" : ""}
         </button>
-        <div className="task-body" onClick={onEdit}>
+
+        <div className="task-body" onClick={handleEdit}>
           <div className="task-title">{task.title}</div>
           {task.note && <div className="task-note">{task.note}</div>}
           <div className="task-meta">
@@ -30,14 +60,26 @@ export default function TaskCard({ task, color, onEdit, onDelete, onToggle, onDr
                 {overdue ? ` · ${tr ? tr('overdue') : 'Overdue'}` : ""}
               </span>
             )}
-            {task.priority && <span className={`task-priority priority-${task.priority}`}>{PRIORITY_LABELS[task.priority]}</span>}
+            {task.priority && (
+              <span className={`task-priority priority-${task.priority}`}>
+                {PRIORITY_LABELS[task.priority]}
+              </span>
+            )}
           </div>
         </div>
+
         <div className="task-actions">
-          {onMove && <button className="task-move-btn" onClick={(e) => { e.stopPropagation(); setShowMove(!showMove); }}>⇄</button>}
-          <button className="task-delete" onClick={onDelete}>×</button>
+          {onMove && (
+            <button
+              className="task-move-btn"
+              onClick={(e) => { e.stopPropagation(); setShowMove(!showMove); }}
+              aria-label="Move task"
+            >⇄</button>
+          )}
+          <button className="task-delete" onClick={handleDelete} aria-label="Delete task">×</button>
         </div>
       </div>
+
       {showMove && quadrants && (
         <div className="task-move-menu">
           {quadrants.filter(q => q.id !== task.quadrantId).map(q => (

@@ -39,7 +39,7 @@ export default function Header({ stats, onClearCompleted, view, onViewChange, us
           <button className={`view-btn ${view === "matrix" ? "active" : ""}`} onClick={() => onViewChange("matrix")}>⊞ {tr('matrix')}</button>
           <button className={`view-btn ${view === "list" ? "active" : ""}`} onClick={() => onViewChange("list")}>☰ {tr('list')}</button>
         </div>
-        {stats.completed > 0 && <button className="clear-btn" onClick={onClearCompleted}>{tr('clearCompleted')}</button>}
+        
         {user && (
           <div className="user-info">
             <span className="user-email">{user.email}</span>

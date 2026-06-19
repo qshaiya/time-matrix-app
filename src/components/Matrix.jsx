@@ -1,7 +1,12 @@
 import { useState } from "react";
 import Quadrant from "./Quadrant";
-import { isOverdue } from "../utils";
 import "./Matrix.css";
+
+function isOverdue(task) {
+  if (task.completed || !task.dueDate) return false;
+  const today = new Date().toISOString().split('T')[0];
+  return task.dueDate < today;
+}
 
 export default function Matrix({ quadrants, tasks, onAdd, onEdit, onDelete, onToggle, onMove, onGoToList, tr }) {
   const [dragOverId, setDragOverId] = useState(null);
@@ -16,12 +21,13 @@ export default function Matrix({ quadrants, tasks, onAdd, onEdit, onDelete, onTo
   };
 
   const overdueCount = tasks.filter(isOverdue).length;
+  const visibleTasks = tasks.filter(t => !t.completed && !isOverdue(t));
 
   return (
     <div className="matrix-container">
       {overdueCount > 0 && (
         <button className="overdue-banner" onClick={onGoToList}>
-          ⚠️ {overdueCount} {tr('overdueSection')} — {tr('list')}
+          ⚠️ {overdueCount} overdue — view in List
         </button>
       )}
       <div className="axis-label axis-y-top">{tr('important')}</div>
@@ -31,7 +37,7 @@ export default function Matrix({ quadrants, tasks, onAdd, onEdit, onDelete, onTo
       <div className="matrix-grid">
         {quadrants.map((q) => (
           <Quadrant key={q.id} quadrant={q} quadrants={quadrants}
-            tasks={tasks.filter((t) => t.quadrantId === q.id && !isOverdue(t))}
+            tasks={visibleTasks.filter((t) => t.quadrantId === q.id)}
             onAdd={() => onAdd(q.id)} onEdit={onEdit} onDelete={onDelete}
             onToggle={onToggle} onMove={onMove}
             isDragOver={dragOverId === q.id}
